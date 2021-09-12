@@ -1,4 +1,5 @@
 import 'express-async-errors'
+import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import sequelize from './databases/sql.js'
@@ -8,6 +9,8 @@ import User from './models/user.js'
 import Post from './models/post.js'
 import RouteNotFoundError from './errors/route-not-found-error.js'
 import errorHandler from './middlewares/error-handler.js'
+
+dotenv.config()
 
 const app = express()
 
