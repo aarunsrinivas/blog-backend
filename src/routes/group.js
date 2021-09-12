@@ -1,17 +1,17 @@
 import express from 'express'
-import Group from '../models/group'
-import User from '../models/user'
+import Group from '../models/group.js'
+import User from '../models/user.js'
 
 const router = express.Router()
 
-router.get('/api/users/:userId/groups', (req, res) => {
+router.get('/api/users/:userId/groups', async (req, res) => {
     const userId = req.params.userId
     const user = await User.findByPk(userId)
     const groups = user.getGroups()
     res.status(200).json(groups)
 })
 
-router.get('/api/users/:userId/groups/:groupId', (req, res) => {
+router.get('/api/users/:userId/groups/:groupId', async (req, res) => {
     const {userId, groupId} = req.params
     const user = await User.findByPk(userId)
     if (!user) {
@@ -21,7 +21,7 @@ router.get('/api/users/:userId/groups/:groupId', (req, res) => {
     res.status(200).json(group)
 })
 
-router.post('/api/users/:userId/groups', (req, res) => {
+router.post('/api/users/:userId/groups', async (req, res) => {
     const {userId} = req.params
     const userIds = req.body.userIds
     const group = Group.build({})

@@ -27,7 +27,6 @@ app.use(errorHandler);
 User.belongsToMany(Group, {through: 'UserGroup'})
 Group.belongsToMany(User, {through: 'UserGroup'})
 Group.hasMany(Message)
-Message.hasOne(Group)
 
 
 const start = async () => {
