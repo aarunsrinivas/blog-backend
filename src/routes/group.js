@@ -17,4 +17,4 @@ router.get('/api/users/:userId/groups/:groupId', (req, res) => {
     res.status(200).json(group)
 })
 
-
+export default router

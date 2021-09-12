@@ -20,3 +20,5 @@ router.post('/auth/login', (req, res) => {
     }
      res.status(200).json(user)
 })
+
+export default router
