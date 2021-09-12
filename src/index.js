@@ -8,6 +8,7 @@ import RouteNotFoundError from './errors/route-not-found-error.js'
 import errorHandler from './middlewares/error-handler.js'
 import User from './models/user.js'
 import Group from './models/group.js'
+import Message from './models/message.js'
 
 const app = express()
 
@@ -25,6 +26,9 @@ app.use(errorHandler);
 
 User.belongsToMany(Group, {through: 'UserGroup'})
 Group.belongsToMany(User, {through: 'UserGroup'})
+Group.hasMany(Message)
+Message.hasOne(Group)
+
 
 const start = async () => {
     try {

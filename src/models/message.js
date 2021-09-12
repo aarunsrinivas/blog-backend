@@ -1,21 +1,20 @@
 import Sequelize from 'sequelize'
 import sequelize from '../databases/sql.js'
 
-const User = sequelize.define('user', {
+const Message = sequelize.define('message', {
     id: {
         type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true
     },
-    username: {
+    message: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false
     },
-    passwordHash: {
-        type: Sequelize.STRING,
+    userId: {
+        type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false
     }
 })
 
-export default User
+export default Message

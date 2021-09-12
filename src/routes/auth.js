@@ -6,15 +6,15 @@ import InvalidCredentialsError from '../errors/invalid-credentials-error.js'
 const router = express.Router()
 
 router.post('/auth/register', (req, res) => {
-    const {email, password} = req.body
+    const {username, password} = req.body
     const passwordHash = await bcrypt.hash(password, 12)
-    const user = await User.create({email, passwordHash})
+    const user = await User.create({username, passwordHash})
     res.status(201).json(user)
 })
 
 router.post('/auth/login', (req, res) => {
-    const {email, password} = req.body
-    const user = await User.findOne({where: {email}})
+    const {username, password} = req.body
+    const user = await User.findOne({where: {username}})
     if (!user || !await bcrypt.compare(password, passwordHash)) {
         throw new InvalidCredentialsError()
     }
