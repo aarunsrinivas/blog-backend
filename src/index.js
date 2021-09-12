@@ -3,12 +3,11 @@ import express from 'express'
 import cors from 'cors'
 import sequelize from './databases/sql.js'
 import authRoutes from './routes/auth.js'
-import groupRoutes from './routes/group.js'
+import postRoutes from './routes/post.js'
+import User from './models/user.js'
+import Post from './models/post.js'
 import RouteNotFoundError from './errors/route-not-found-error.js'
 import errorHandler from './middlewares/error-handler.js'
-import User from './models/user.js'
-import Group from './models/group.js'
-import Message from './models/message.js'
 
 const app = express()
 
@@ -16,7 +15,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use(authRoutes)
-app.use(groupRoutes)
+app.use(postRoutes)
 
 app.all('*', async () => {
     throw new RouteNotFoundError()
@@ -24,10 +23,7 @@ app.all('*', async () => {
 
 app.use(errorHandler);
 
-User.belongsToMany(Group, {through: 'UserGroup'})
-Group.belongsToMany(User, {through: 'UserGroup'})
-Group.hasMany(Message)
-
+User.hasMany(Post)
 
 const start = async () => {
     try {

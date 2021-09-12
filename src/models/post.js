@@ -1,20 +1,20 @@
 import Sequelize from 'sequelize'
 import sequelize from '../databases/sql.js'
 
-const Message = sequelize.define('message', {
+const Post = sequelize.define('post', {
     id: {
         type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true
     },
-    message: {
+    title: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    userId: {
-        type: Sequelize.INTEGER.UNSIGNED,
+    text: {
+        type: Sequelize.STRING,
         allowNull: false
     }
 })
 
-export default Message
+export default Post
