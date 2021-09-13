@@ -2,7 +2,7 @@ import CustomError from './custom-error.js'
 
 class InvalidCredentialsError extends CustomError {
 
-    status = 4000
+    status = 400
 
     constructor() {
         super('Invalid credentials')
