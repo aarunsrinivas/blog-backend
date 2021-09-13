@@ -26,7 +26,8 @@ router.post('/api/users/:userId/posts', async (req, res) => {
     if(!user) {
         throw new Error('User not found')
     }
-    const post = await user.createPost({title, text})
+    const likes = 0
+    const post = await user.createPost({title, text, likes})
     res.status(201).json(post)
 })
 

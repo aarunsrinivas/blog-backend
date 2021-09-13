@@ -14,6 +14,10 @@ const Post = sequelize.define('post', {
     text: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    likes : {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 })
 
