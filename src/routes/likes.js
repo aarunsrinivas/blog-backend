@@ -28,9 +28,9 @@ router.post('/api/:postId/likes', async (req, res) => {
         throw new Error('Post not found')
     }
     post.likes += 1
-    const updateLikes = await post.save()
+    await post.save()
     // const likedPost = await Post.increment('likes', { by: 1, where: { id: postId }})
-    res.status(201).json(updateLikes)
+    res.status(201).json(post)
 })
 
 export default router
