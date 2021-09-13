@@ -5,6 +5,7 @@ import cors from 'cors'
 import sequelize from './databases/sql.js'
 import authRoutes from './routes/auth.js'
 import postRoutes from './routes/post.js'
+import likesRoutes from './routes/likes.js'
 import User from './models/user.js'
 import Post from './models/post.js'
 import RouteNotFoundError from './errors/route-not-found-error.js'
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use(authRoutes)
 app.use(postRoutes)
+app.use(likesRoutes)
 
 app.all('*', async () => {
     throw new RouteNotFoundError()
