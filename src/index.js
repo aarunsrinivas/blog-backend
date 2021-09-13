@@ -12,6 +12,8 @@ import errorHandler from './middlewares/error-handler.js'
 
 dotenv.config()
 
+console.log(process.env.DATABASE_URL)
+
 const app = express()
 
 app.use(cors())
@@ -31,7 +33,7 @@ User.hasMany(Post)
 const start = async () => {
     try {
         await sequelize.sync({force: true})
-        console.log('Connected to MySQL')
+        console.log('Connected to DB')
     } catch (err) {
         console.error(err);
     }
