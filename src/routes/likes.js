@@ -22,15 +22,13 @@ router.get('/api/users/:userId/posts', async (req, res) => {
 
 router.post('/api/:postId/likes', async (req, res) => {
     const postId = req.params.postId
-    const post = await Post.findByPk(userId)
-
+    const post = await Post.findByPk(postId)
     if(!post) {
         throw new Error('Post not found')
     }
     post.likes += 1
-    const updateLikes = await post.save()
-    // const likedPost = await Post.increment('likes', { by: 1, where: { id: postId }})
-    res.status(201).json(updateLikes)
+    await post.save()
+    res.status(201).json(post)
 })
 
 export default router
