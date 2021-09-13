@@ -12,12 +12,14 @@ import errorHandler from './middlewares/error-handler.js'
 
 dotenv.config()
 
-console.log(process.env.DATABASE_URL)
-
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+app.get('/', (req, res) => {
+    res.status(200).json({message: 'Ready for requests'})
+})
 
 app.use(authRoutes)
 app.use(postRoutes)
