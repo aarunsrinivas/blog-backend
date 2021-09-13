@@ -15,7 +15,7 @@ router.post('/auth/register', async (req, res) => {
 router.post('/auth/login', async (req, res) => {
     const {email, password} = req.body
     const user = await User.findOne({where: {email}})
-    if (!user || !await bcrypt.compare(password, passwordHash)) {
+    if (!user || !await bcrypt.compare(password, user.passwordHash)) {
         throw new InvalidCredentialsError()
     }
      res.status(200).json(user)
