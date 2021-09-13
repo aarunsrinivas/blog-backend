@@ -9,6 +9,17 @@ router.get('/api/posts', async (req, res) => {
     res.status(200).json(posts)
 })
 
+router.put('/api/posts/:postId', async (req, res) => {
+    const postId = req.params.postId
+    const post = await Post.findByPk(postId)
+    if(!post) {
+        throw new Error('Post not found')
+    }
+    post.likes += 1
+    await post.save()
+    res.status(200).json(post)
+})
+
 router.get('/api/users/:userId/posts', async (req, res) => {
     const userId = req.params.userId
     const user = await User.findByPk(userId)
@@ -26,8 +37,7 @@ router.post('/api/users/:userId/posts', async (req, res) => {
     if(!user) {
         throw new Error('User not found')
     }
-    const likes = 0
-    const post = await user.createPost({title, text, likes})
+    const post = await user.createPost({title, text})
     res.status(201).json(post)
 })
 

@@ -2,7 +2,7 @@ import Sequelize from 'sequelize'
 import sequelize from '../databases/sql.js'
 
 const User = sequelize.define('user', {
-    username: {
+    id: {
         type: Sequelize.STRING,
         primaryKey: true,
     },
